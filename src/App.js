@@ -52,8 +52,8 @@ const App = () => {
     useEffect(() => {
         try {
             // Check if Firebase config is available from the environment
-            const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
-            const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+           const firebaseConfig = typeof process.env.REACT_APP_FIREBASE_CONFIG !== 'undefined' ? JSON.parse(process.env.REACT_APP_FIREBASE_CONFIG) : null;
+           const appId = typeof process.env.REACT_APP_APP_ID !== 'undefined' ? process.env.REACT_APP_APP_ID : 'default-app-id';
 
             if (!firebaseConfig) {
                 console.error("Firebase config is not defined. Cannot initialize Firebase.");
@@ -77,7 +77,7 @@ const App = () => {
                 } else {
                     // Sign in anonymously if no user is found and no custom token is provided
                     try {
-                        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+                        const initialAuthToken = typeof process.env.REACT_APP_INITIAL_AUTH_TOKEN !== 'undefined' ? process.env.REACT_APP_INITIAL_AUTH_TOKEN : null;
                         if (initialAuthToken) {
                             await signInWithCustomToken(authentication, initialAuthToken);
                         } else {
@@ -104,7 +104,7 @@ const App = () => {
             return;
         }
 
-        const roomDocRef = doc(db, `artifacts/${typeof __app_id !== 'undefined' ? __app_id : 'default-app-id'}/public/data/gameRooms`, currentRoomId);
+        const roomDocRef = doc(db, `artifacts/${typeof process.env.REACT_APP_APP_ID !== 'undefined' ? process.env.REACT_APP_APP_ID : 'default-app-id'}/public/data/gameRooms`, currentRoomId);
 
         const unsubscribeGameData = onSnapshot(roomDocRef, (docSnap) => {
             if (docSnap.exists()) {
@@ -225,7 +225,7 @@ const App = () => {
             return;
         }
 
-        const roomRef = doc(db, `artifacts/${typeof __app_id !== 'undefined' ? __app_id : 'default-app-id'}/public/data/gameRooms`, roomIdInput);
+        const roomRef = doc(db, `artifacts/${typeof process.env.REACT_APP_APP_ID !== 'undefined' ? process.env.REACT_APP_APP_ID : 'default-app-id'}/public/data/gameRooms`, roomIdInput);
 
         try {
             const docSnap = await getDoc(roomRef);
