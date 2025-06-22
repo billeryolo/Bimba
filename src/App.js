@@ -5,6 +5,27 @@ import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, collection, q
 
 // Main App component
 const App = () => {
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyCPEPmupqvkYwAvS32CAQSc4z7bFF0SpfY",
+
+        authDomain: "russian-bomb-party.firebaseapp.com",
+
+        projectId: "russian-bomb-party",
+
+        storageBucket: "russian-bomb-party.firebasestorage.app",
+
+        messagingSenderId: "725758041672",
+
+        appId: "1:725758041672:web:e53c6dcef8572d7bdfc27d",
+
+        measurementId: "G-2GL6MHK7YV"
+
+    };
+
+    
+    const APP_ID_FOR_FIRESTORE_PATH = "russian-bomb-party-prod";
     // Firebase related states
     const [db, setDb] = useState(null);
     const [auth, setAuth] = useState(null);
