@@ -269,7 +269,7 @@ const App = () => {
             return;
         }
 
-        const roomRef = doc(db, `artifacts/${typeof __app_id !== 'undefined' ? __app_id : 'default-app-id'}/public/data/gameRooms`, roomIdInput);
+        const roomRef = doc(db, `artifacts/${APP_ID_FOR_FIRESTORE_PATH}/public/data/gameRooms`, roomIdInput);
 
         try {
             const docSnap = await getDoc(roomRef);
@@ -316,7 +316,7 @@ const App = () => {
         }
 
         try {
-            const roomRef = doc(db, `artifacts/${typeof __app_id !== 'undefined' ? __app_id : 'default-app-id'}/public/data/gameRooms`, currentRoomId);
+            const roomRef = doc(db, `artifacts/${APP_ID_FOR_FIRESTORE_PATH}/public/data/gameRooms`, currentRoomId);
             const initialLetters = await generateLettersWithLLM(); // Use LLM for initial letters
 
             await updateDoc(roomRef, {
@@ -355,7 +355,7 @@ const App = () => {
             return;
         }
 
-        const roomRef = doc(db, `artifacts/${typeof __app_id !== 'undefined' ? __app_id : 'default-app-id'}/public/data/gameRooms`, currentRoomId);
+        const roomRef = doc(db, `artifacts/${APP_ID_FOR_FIRESTORE_PATH}/public/data/gameRooms`, currentRoomId);
         let updatedPlayers = [...gameData.players];
         let currentPlayerIndex = updatedPlayers.findIndex(p => p.id === userId);
 
@@ -484,7 +484,7 @@ const App = () => {
         if (!db || !currentRoomId || !gameData || gameData.status !== 'in-game' || gameData.activePlayerId !== userId) return;
 
         try {
-            const roomRef = doc(db, `artifacts/${typeof __app_id !== 'undefined' ? __app_id : 'default-app-id'}/public/data/gameRooms`, currentRoomId);
+            const roomRef = doc(db, `artifacts/${APP_ID_FOR_FIRESTORE_PATH}/public/data/gameRooms`, currentRoomId);
             let updatedPlayers = [...gameData.players];
             let currentPlayerIndex = updatedPlayers.findIndex(p => p.id === userId);
 
