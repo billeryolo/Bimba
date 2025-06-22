@@ -52,7 +52,9 @@ const App = () => {
     useEffect(() => {
         try {
             // Check if Firebase config is available from the environment
-           const firebaseConfig = typeof process.env.REACT_APP_FIREBASE_CONFIG !== 'undefined' ? JSON.parse(process.env.REACT_APP_FIREBASE_CONFIG) : null;
+           const configToUse = typeof process.env.REACT_APP_FIREBASE_CONFIG !== 'undefined'
+            ? JSON.parse(process.env.REACT_APP_FIREBASE_CONFIG)
+            : firebaseConfig; // Use the firebaseConfig defined at the top as fallback
            const appId = typeof process.env.REACT_APP_APP_ID !== 'undefined' ? process.env.REACT_APP_APP_ID : 'default-app-id';
 
             if (!firebaseConfig) {
@@ -732,6 +734,7 @@ const App = () => {
                     </div>
                 )}
             </div>
+            
         );
     };
 
